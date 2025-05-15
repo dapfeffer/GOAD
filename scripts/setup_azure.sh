@@ -28,8 +28,8 @@ sed -i 's/SERVER_NAME=""/SERVER_NAME="jumpbox"/g' 1-setup.sh
 sed -i 's/LOCAL_DOMAIN=""/LOCAL_DOMAIN="local"/g' 1-setup.sh
 sed -i 's/INSTALL_MYSQL=""/INSTALL_MYSQL="true"/g' 1-setup.sh
 sed -i 's/SECURE_MYSQL=""/SECURE_MYSQL="true"/g' 1-setup.sh
-sed -i 's/MYSQL_ROOT_PWD=""/MYSQL_ROOT_PASSWORD="supersecretpassword"/g' 1-setup.sh
-sed -i 's/GUAC_PWD=""/GUAC_PASSWORD="evenmoresecretpassword"/g' 1-setup.sh
+sed -i 's/MYSQL_ROOT_PWD=""/MYSQL_ROOT_PWD="supersecretpassword"/g' 1-setup.sh
+sed -i 's/GUAC_PWD=""/GUAC_PWD="evenmoresecretpassword"/g' 1-setup.sh
 sed -i 's/INSTALL_TOPT=""/INSTALL_TOPT="false"/g' 1-setup.sh
 sed -i 's/INSTALL_DUO=""/INSTALL_DUO="false"/g' 1-setup.sh
 sed -i 's/INSTALL_LDAP=""/INSTALL_LDAP="false"/g' 1-setup.sh
