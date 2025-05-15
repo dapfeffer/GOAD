@@ -21,31 +21,31 @@ sudo sed -i '/force_color_prompt=yes/s/^#//g' /root/.bashrc
 
 # add guacamole based on autoinstaller
 # first download to bootstrap
-wget https://raw.githubusercontent.com/itiligent/Guacamole-Install/main/1-setup.sh
+#wget https://raw.githubusercontent.com/itiligent/Guacamole-Install/main/1-setup.sh
 
 # then change config for our environment
-sed -i 's/SERVER_NAME=""/SERVER_NAME="jumpbox"/g' 1-setup.sh
-sed -i 's/LOCAL_DOMAIN=""/LOCAL_DOMAIN="local"/g' 1-setup.sh
-sed -i 's/INSTALL_MYSQL=""/INSTALL_MYSQL="true"/g' 1-setup.sh
-sed -i 's/SECURE_MYSQL=""/SECURE_MYSQL="true"/g' 1-setup.sh
-sed -i 's/MYSQL_ROOT_PWD=""/MYSQL_ROOT_PWD="supersecretpassword"/g' 1-setup.sh
-sed -i 's/GUAC_PWD=""/GUAC_PWD="evenmoresecretpassword"/g' 1-setup.sh
-sed -i 's/INSTALL_TOPT=""/INSTALL_TOPT="false"/g' 1-setup.sh
-sed -i 's/INSTALL_DUO=""/INSTALL_DUO="false"/g' 1-setup.sh
-sed -i 's/INSTALL_LDAP=""/INSTALL_LDAP="false"/g' 1-setup.sh
-sed -i 's/INSTALL_QCONNECT=""/INSTALL_QCONNECT="false"/g' 1-setup.sh
-sed -i 's/INSTALL_HISTREC=""/INSTALL_HISTREC="false"/g' 1-setup.sh
-sed -i 's/GUAC_URL_REDIR=""/GUAC_URL_REDIR="true"/g' 1-setup.sh
-sed -i 's/INSTALL_NGINX=""/INSTALL_NGINX="true"/g' 1-setup.sh
-sed -i 's/SELF_SIGN=""/SELF_SIGN="true"/g' 1-setup.sh
+#sed -i 's/SERVER_NAME=""/SERVER_NAME="jumpbox"/g' 1-setup.sh
+#sed -i 's/LOCAL_DOMAIN=""/LOCAL_DOMAIN="local"/g' 1-setup.sh
+#sed -i 's/INSTALL_MYSQL=""/INSTALL_MYSQL="true"/g' 1-setup.sh
+#sed -i 's/SECURE_MYSQL=""/SECURE_MYSQL="true"/g' 1-setup.sh
+#sed -i 's/MYSQL_ROOT_PWD=""/MYSQL_ROOT_PWD="supersecretpassword"/g' 1-setup.sh
+#sed -i 's/GUAC_PWD=""/GUAC_PWD="evenmoresecretpassword"/g' 1-setup.sh
+#sed -i 's/INSTALL_TOPT=""/INSTALL_TOPT="false"/g' 1-setup.sh
+#sed -i 's/INSTALL_DUO=""/INSTALL_DUO="false"/g' 1-setup.sh
+#sed -i 's/INSTALL_LDAP=""/INSTALL_LDAP="false"/g' 1-setup.sh
+#sed -i 's/INSTALL_QCONNECT=""/INSTALL_QCONNECT="false"/g' 1-setup.sh
+#sed -i 's/INSTALL_HISTREC=""/INSTALL_HISTREC="false"/g' 1-setup.sh
+#sed -i 's/GUAC_URL_REDIR=""/GUAC_URL_REDIR="true"/g' 1-setup.sh
+#sed -i 's/INSTALL_NGINX=""/INSTALL_NGINX="true"/g' 1-setup.sh
+#sed -i 's/SELF_SIGN=""/SELF_SIGN="true"/g' 1-setup.sh
 
 # first we need to install nginx as the script is not able to do it
-sudo apt-get install -y nginx
+#sudo apt-get install -y nginx
 
 # then we run the script
-chmod +x 1-setup.sh
-
-./1-setup.sh
+#chmod +x 1-setup.sh
+#
+#./1-setup.sh
 
 
 # install docker
@@ -66,4 +66,11 @@ echo \
       sudo apt-get update
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# install guacamole
+git clone "https://github.com/boschkundendienst/guacamole-docker-compose.git"
+cd guacamole-docker-compose
+sudo ./prepare.sh
+sudo docker-compose up -d
+
 
