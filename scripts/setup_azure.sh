@@ -61,3 +61,8 @@ git clone https://github.com/mitre/caldera.git --recursive --branch 5.3.0
 cd caldera
 sudo docker build --build-arg WIN_BUILD=true . -t caldera:server
 docker run -d -p 7010:7010 -p 7011:7011/udp -p 7012:7012 -p 8888:8888 caldera:server
+
+# to get completly hardcore, install gui and rdp to connect through guacamole
+sudo apt install xubuntu-desktop xrdp firefox -y
+sudo systemctl start xrdp
+sudo systemctl enable xrdp
