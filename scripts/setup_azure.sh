@@ -42,6 +42,14 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 git clone "https://github.com/boschkundendienst/guacamole-docker-compose.git"
 cd guacamole-docker-compose
 sudo ./prepare.sh
+
+# set http basic auth stuff
+printf 'bt:$2y$05$GHyrkppsBzm5/wG/DSzrIOCoYeH6NnYJKtxfcif3RI/jIB4YuTRXu' > nginx/htpasswd
+sed -i '/location \//a\    auth_basic "Restricted Area";\n    auth_basic_user_file /etc/nginx/.htpasswd;' nginx/templates/guacamole.conf.template
+sed -i '/nginx:/,/volumes:/ {
+  /volumes:/a\   - ./nginx/htpasswd:/etc/nginx/.htpasswd:ro
+}' docker-compose.yml
+
 sudo docker-compose up -d
 
 # add mitre caldera
