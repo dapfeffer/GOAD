@@ -36,7 +36,7 @@ echo \
       sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
       sudo apt-get update
 
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # install guacamole
 git clone "https://github.com/boschkundendienst/guacamole-docker-compose.git"
@@ -50,9 +50,10 @@ sed -i '/nginx:/,/volumes:/ {
   /volumes:/a\   - ./nginx/htpasswd:/etc/nginx/.htpasswd:ro
 }' docker-compose.yml
 
-sudo docker-compose up -d
+sudo docker compose up -d
 
 # add mitre caldera
+cd ..
 git clone https://github.com/mitre/caldera.git --recursive --branch 5.3.0
 cd caldera
 sudo docker build --build-arg WIN_BUILD=true . -t caldera:server
