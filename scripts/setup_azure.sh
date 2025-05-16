@@ -67,5 +67,12 @@ sudo DEBIAN_FRONTEND=noninteractive apt install xubuntu-desktop xrdp firefox rem
 sudo systemctl start xrdp
 sudo systemctl enable xrdp
 
+# some stuff to repair xrdp
+echo "startxfce4" | sudo tee /etc/skel/.xsession
+echo "startxfce4" > ~/.xsession
+echo "exec startxfce4" | sudo tee /etc/xrdp/startwm.sh > /dev/null
+
+sudo systemctl restart xrdp
+
 # create user and set passw
 sudo useradd -m -s /bin/bash -p '$6$THyM9QYqPV2VG50g$oysqHTh/Afal6EerYY807tLrhndMOPkZ3AJcuJS3nuLRuw5fr3MGDPtahfyx3F5ZIE/kdUEEkta0jtzg/2A0l0' bt && sudo deluser bt sudo 2>/dev/null || true
