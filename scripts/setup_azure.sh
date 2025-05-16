@@ -50,6 +50,9 @@ sed -i '/nginx:/,/volumes:/ {
   /volumes:/a\   - ./nginx/htpasswd:/etc/nginx/.htpasswd:ro
 }' docker-compose.yml
 
+# change https port
+sed -i 's/8443:443/443:443/g' docker-compose.yml
+
 sudo docker compose up -d
 
 # add mitre caldera
