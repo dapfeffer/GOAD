@@ -44,7 +44,11 @@ cd guacamole-docker-compose
 sudo ./prepare.sh
 
 # set http basic auth stuff
-printf 'bt:$2y$05$GHyrkppsBzm5/wG/DSzrIOCoYeH6NnYJKtxfcif3RI/jIB4YuTRXu' > nginx/htpasswd
+printf 'bt:$2y$05$GHyrkppsBzm5/wG/DSzrIOCoYeH6NnYJKtxfcif3RI/jIB4YuTRXu\n' > nginx/htpasswd
+printf 'bt1:$3y$05$GHyrkppsBzm5/wG/DSzrIOCoYeH6NnYJKtxfcif3RI/jIB4YuTRXu\n' >> nginx/htpasswd
+printf 'bt2:$2y$05$GHyrkppsBzm5/wG/DSzrIOCoYeH6NnYJKtxfcif3RI/jIB4YuTRXu\n' >> nginx/htpasswd
+printf 'bt3:$2y$05$GHyrkppsBzm5/wG/DSzrIOCoYeH6NnYJKtxfcif3RI/jIB4YuTRXu\n' >> nginx/htpasswd
+printf 'bt4:$2y$05$GHyrkppsBzm5/wG/DSzrIOCoYeH6NnYJKtxfcif3RI/jIB4YuTRXu' >> nginx/htpasswd
 sed -i '/location \//a\    auth_basic "Restricted Area";\n    auth_basic_user_file /etc/nginx/.htpasswd;' nginx/templates/guacamole.conf.template
 sed -i '/nginx:/,/volumes:/ {
   /volumes:/a\   - ./nginx/htpasswd:/etc/nginx/.htpasswd:ro
@@ -60,17 +64,17 @@ cd ..
 git clone https://github.com/mitre/caldera.git --recursive --branch 5.3.0
 cd caldera
 sudo docker build --build-arg WIN_BUILD=true . -t caldera:server
-docker run -d -p 7010:7010 -p 7011:7011/udp -p 7012:7012 -p 8888:8888 caldera:server
+sudo docker run -d -p 7010:7010 -p 7011:7011/udp -p 7012:7012 -p 8888:8888 --name caldera_server caldera:server
 
 # to get completly hardcore, install gui and rdp to connect through guacamole
-sudo DEBIAN_FRONTEND=noninteractive apt install xubuntu-desktop xrdp firefox remmina -y
+sudo DEBIAN_FRONTEND=noninteractive apt install lubuntu-desktop xrdp firefox remmina -y
+echo "allowed_users=anybody" | sudo tee /etc/X11/Xwrapper.config
 sudo systemctl start xrdp
 sudo systemctl enable xrdp
 
 # some stuff to repair xrdp
-echo "startxfce4" | sudo tee /etc/skel/.xsession
-echo "startxfce4" > ~/.xsession
-echo "exec startxfce4" | sudo tee /etc/xrdp/startwm.sh > /dev/null
+echo "startlxqt" | sudo tee /etc/skel/.xsession
+echo "startlxqt" > ~/.xsession
 
 sudo systemctl restart xrdp
 
@@ -78,3 +82,8 @@ sudo systemctl restart xrdp
 sudo adduser --disabled-password --gecos "" bt
 sudo usermod --password '$6$THyM9QYqPV2VG50g$oysqHTh/Afal6EerYY807tLrhndMOPkZ3AJcuJS3nuLRuw5fr3MGDPtahfyx3F5ZIE/kdUEEkta0jtzg/2A0l0' bt
 sudo deluser bt sudo 2>/dev/null || true
+
+
+# paste caldera output to bt-file to give him pw
+sudo docker logs caldera_server | sudo tee /home/bt/caldera.txt
+sudo chown bt:bt /home/bt/caldera.txt
