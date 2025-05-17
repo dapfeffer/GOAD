@@ -49,7 +49,7 @@ printf 'bt1:$3y$05$GHyrkppsBzm5/wG/DSzrIOCoYeH6NnYJKtxfcif3RI/jIB4YuTRXu\n' >> n
 printf 'bt2:$2y$05$GHyrkppsBzm5/wG/DSzrIOCoYeH6NnYJKtxfcif3RI/jIB4YuTRXu\n' >> nginx/htpasswd
 printf 'bt3:$2y$05$GHyrkppsBzm5/wG/DSzrIOCoYeH6NnYJKtxfcif3RI/jIB4YuTRXu\n' >> nginx/htpasswd
 printf 'bt4:$2y$05$GHyrkppsBzm5/wG/DSzrIOCoYeH6NnYJKtxfcif3RI/jIB4YuTRXu' >> nginx/htpasswd
-sed -i '/location \//a\    auth_basic "Restricted Area";\n    auth_basic_user_file /etc/nginx/.htpasswd;\n    proxy_set_header Authorization "";' nginx/templates/guacamole.conf.template
+sed -i '/location \//a\    auth_basic "Restricted Area";\n    auth_basic_user_file /etc/nginx/.htpasswd;' nginx/templates/guacamole.conf.template
 sed -i '/nginx:/,/volumes:/ {
   /volumes:/a\   - ./nginx/htpasswd:/etc/nginx/.htpasswd:ro
 }' docker-compose.yml
