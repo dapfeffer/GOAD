@@ -67,7 +67,7 @@ sudo docker build --build-arg WIN_BUILD=true . -t caldera:server
 sudo docker run -d -p 7010:7010 -p 7011:7011/udp -p 7012:7012 -p 8888:8888 --name caldera_server caldera:server
 
 # to get completly hardcore, install gui and rdp to connect through guacamole
-sudo DEBIAN_FRONTEND=noninteractive apt install lubuntu-desktop xrdp firefox remmina -y
+sudo DEBIAN_FRONTEND=noninteractive apt install lubuntu-desktop xrdp firefox remmina sshpass -y
 echo "allowed_users=anybody" | sudo tee /etc/X11/Xwrapper.config
 sudo systemctl start xrdp
 sudo systemctl enable xrdp
