@@ -1,0 +1,4 @@
+- name: Install sysmon
+  hosts: domain
+  roles:
+    - { role: 'sysmon', tags: 'sysmon' }

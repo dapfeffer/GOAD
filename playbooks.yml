@@ -75,3 +75,5 @@ default:
   - servers.yml
   - security.yml
   - vulnerabilities.yml
+  # add sysmon support
+  - sysmon.yml
