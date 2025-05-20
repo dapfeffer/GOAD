@@ -78,11 +78,13 @@ echo "startlxqt" > ~/.xsession
 
 sudo systemctl restart xrdp
 
-# create user and set passw
+# create user and set passw and add to sudoers
 sudo adduser --disabled-password --gecos "" bt
 sudo usermod --password '$6$THyM9QYqPV2VG50g$oysqHTh/Afal6EerYY807tLrhndMOPkZ3AJcuJS3nuLRuw5fr3MGDPtahfyx3F5ZIE/kdUEEkta0jtzg/2A0l0' bt
-sudo deluser bt sudo 2>/dev/null || true
+sudo usermod -aG sudo bt
 
+sudo adduser --disabled-password --gecos "" rt
+sudo usermod --password '$6$THyM9QYqPV2VG50g$oysqHTh/Afal6EerYY807tLrhndMOPkZ3AJcuJS3nuLRuw5fr3MGDPtahfyx3F5ZIE/kdUEEkta0jtzg/2A0l0' rt
 
 # paste caldera output to bt-file to give him pw
 sudo docker logs caldera_server | sudo tee /home/bt/caldera.txt
