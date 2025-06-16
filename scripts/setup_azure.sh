@@ -83,13 +83,13 @@ sudo adduser --disabled-password --gecos "" bt
 sudo usermod --password '$6$THyM9QYqPV2VG50g$oysqHTh/Afal6EerYY807tLrhndMOPkZ3AJcuJS3nuLRuw5fr3MGDPtahfyx3F5ZIE/kdUEEkta0jtzg/2A0l0' bt
 sudo usermod -aG sudo bt
 # copy .ssh authorized users
-sudo cp -r /home/goadmin/.ssh /home/bt/
+sudo cp -r /home/goad/.ssh /home/bt/
 sudo chown bt:bt /home/bt/.ssh
 
 sudo adduser --disabled-password --gecos "" rt
 sudo usermod --password '$6$THyM9QYqPV2VG50g$oysqHTh/Afal6EerYY807tLrhndMOPkZ3AJcuJS3nuLRuw5fr3MGDPtahfyx3F5ZIE/kdUEEkta0jtzg/2A0l0' rt
 # copy .ssh authorized users
-sudo cp -r /home/goadmin/.ssh /home/rt/
+sudo cp -r /home/goad/.ssh /home/rt/
 sudo chown bt:bt /home/rt/.ssh
 
 # paste caldera output to bt-file to give him pw
