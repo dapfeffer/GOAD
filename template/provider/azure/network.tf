@@ -56,7 +56,7 @@ resource "azurerm_network_security_group" "nsg" {
   }
   security_rule {
     name                          = "AllowAltHTTPSInbound"
-    priority                      = 110
+    priority                      = 120
     direction                     = "Inbound"
     access                        = "Allow"
     protocol                      = "Tcp"
