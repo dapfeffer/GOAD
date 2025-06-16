@@ -14,7 +14,7 @@
   offer              = "office-365"
   windows_sku        = "win10-22h2-avd-m365"
   windows_version    = "latest"
-  private_ip_address = "{{ip_range}}.31"
+  private_ip_address = "{{ip_range}}.32"
   password           = "9wioY9tG2+8"
   size               = "Standard_B2s"
 }
