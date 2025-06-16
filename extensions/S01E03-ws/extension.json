@@ -1,0 +1,15 @@
+{
+    "name": "S01E03-ws",
+    "description": "Add an hardened workstation into the lab",
+    "machines": [
+        "ws01 (casterlyrock.sevenkingdoms.local)",
+        "ws02 (castelblack-stables.north.sevenkingdoms.local)"
+    ],
+    "compatibility": [
+        "GOAD",
+        "GOAD-Light",
+        "GOAD-Mini",
+        "S01E03-LordSnow"
+    ],
+    "impact": "aws doesn't provide windows10 ami. you can still install ws01 with aws but a windows server 2019 will be used instead"
+}
