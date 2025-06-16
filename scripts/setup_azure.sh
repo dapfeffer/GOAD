@@ -103,7 +103,7 @@ git checkout v2.4.22
 cp .env.model .env
 sed -i 's/__MUST_BE_CHANGED__/__MUST_BE_CHANGED__OK_NOW_THIS_IS_CHANGED__/g' .env
 sed -i 's/INTERFACE_HTTPS_PORT=443/INTERFACE_HTTPS_PORT=8443/g' .env
-docker compose pull
-docker compose up -d
+sudo docker compose pull
+sudo docker compose up -d
 sudo docker logs | sudo tee /home/bt/dfir-iris.txt
 cd ..
